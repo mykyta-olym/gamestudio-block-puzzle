@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+}
+
+.nav-container {
+    position: fixed; /* Fixed positioning to keep the sidebar in view */
+    left: 0; /* Align to the left side of the viewport */
+    width: 300px; /* Width of the sidebar */
+    box-shadow: 1px 3px 3px 3px black;
+    transition: all 0.5s ease;
+    z-index: 10;
+    transform: translateX(-100%);
+    transform-origin: left center;
+}
+
+.nav-container.open {
+    transform: translateX(0); /* Slide in */
+}
+
+.nav {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+.navigation li{
+    height: 50px;
+    position:relative;
+    backdrop-filter: blur(30px);
+}
+.navigation a {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    display:block;
+    height:100%;
+    width:100%;
+    line-height:50px;
+    color:#bbb;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 10%;
+    border-left: 5px solid transparent;
+    letter-spacing: 1px;
+    transition:all 0.3s linear;
+}
+.text {
+    transition: all .4s linear;
+}
+li:hover .text{
+    margin-left:20px
+}
+.active a {
+    color: #9b59b6;
+    border-left:5px solid #9b59b6;
+    background-color: #1B1B1B;
+    outline:0;
+}
+li:not(.active):hover a{
+    color: #eee;
+    border-left:5px solid #FCFCFC;
+    background-color: #1B1B1B;
+}
+
+span[class ^= "icon"]{
+    position:absolute;
+    left:20px;
+    font-size:1.5em;
+    transition: all 0.3s linear;
+}
+
+@media only screen and (max-width : 860px){
+    .text{
+        display:none;
+    }
+    .nav-container, a {
+        width: 70px;
+    }
+    a:hover{
+        width: 200px;
+        z-index:1;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid black;
+        box-shadow: 0 0 1px 1px black;
+    }
+    a:hover .text {
+        display:block;
+        padding-left: 30%;
+    }
+
+}
+@media only screen and (max-width: 480px){
+    .nav-container, a{ width:50px; }
+    span[class ^= "icon"]{left:8px;}
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: fixed; /* Changed from relative to fixed */
+    top: 20px; /* Distance from the top of the viewport */
+    left: 30px; /* Distance from the left of the viewport */
+    z-index: 100;
+}
+
+.btn::after {
+    content: 'like';
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 15px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s linear;
+    top: 115%;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    transition: .2s linear;
+}
+
+.icon path {
+    fill: white;
+    transition: .2s linear;
+}
+
+.btn:hover > .icon {
+    transform: scale(1.2);
+}
+
+.btn:hover > .icon path {
+    fill: rgb(177, 139, 189);
+}
+
+.btn:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+
+
+@media only screen and (max-width: 860px) {
+    .nav-container, .navigation a {
+        width: 100vw;  /* Set the width to 100% of the viewport width */
+    }
+    .navigation a {
+        display: flex;  /* Use flexbox for better alignment of icons and text */
+        align-items: center;  /* Center items vertically within the navigation link */
+        justify-content: flex-start;  /* Align items to the start */
+        padding-left: 15%;  /* Provide padding to keep content indented */
+    }
+    .text {
+        display: block;  /* Always display the text */
+        margin-left: 25px;  /* Margin to separate text from icon */
+        white-space: nowrap;  /* Ensure text does not wrap to the next line */
+        overflow: hidden;  /* Hide any overflow */
+        text-overflow: ellipsis;  /* Use ellipsis for text that overflows */
+    }
+    .navigation a:hover {
+        width: 100vw;  /* Ensure that on hover, the width remains full-screen */
+        z-index: 1;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid black;
+        box-shadow: 0 0 1px 1px black;
+        padding-left: 10%;  /* Increase padding on hover */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .nav-container, .navigation a {
+        width: 100vw;  /* Ensure the nav container spans the full width */
+    }
+    .navigation a {
+        padding-left: 10%;  /* Adjust padding for even smaller screens */
+    }
+    span[class^="icon"] {
+        left: 12px;  /* Adjust icon position to be closer to the edge */
+        font-size: 1.2em;  /* Adjust the icon size for better visibility */
+    }
+    .text {
+        margin-left: 20px;  /* Adjust margin for text next to the icon */
+    }
+}

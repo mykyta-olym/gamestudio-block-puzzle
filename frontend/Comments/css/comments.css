@@ -1,0 +1,283 @@
+form {
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%; /* Responsive width */
+    max-width: 300px; /* Maximum width */
+    margin: 20px auto;
+    z-index: 10;
+}
+
+.lb {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.infos[type="text"], input[type="email"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #333333;
+    color: white;
+}
+
+#send {
+    --glow-color: rgb(176, 255, 189);
+    --glow-spread-color: rgba(123, 255, 160, 0.781);
+    --enhanced-glow-color: rgb(182, 175, 71);
+    --btn-color: rgba(13, 241, 21, 0.508);
+    border: .25em solid var(--glow-color);
+    padding: 1em 2em;
+    color: var(--glow-color);
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 .05em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+}
+
+#send::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+#send:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 .75em .25em var(--glow-color);
+}
+
+#send:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 .5em .25em var(--glow-color);
+}
+
+#limpar {
+    --glow-color: rgb(255, 176, 176);
+    --glow-spread-color: rgba(255, 123, 123, 0.781);
+    --enhanced-glow-color: rgb(182, 175, 71);
+    --btn-color: rgba(241, 13, 13, 0.508);
+    border: .25em solid var(--glow-color);
+    padding: 1em 2em;
+    color: var(--glow-color);
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 .05em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+}
+
+#limpar::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+#limpar:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 .75em .25em var(--glow-color);
+}
+
+#limpar:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 .5em .25em var(--glow-color);
+}
+
+
+.code-editor {
+    flex: 0 0 300px; /* Do not grow or shrink, base width of 300px */
+    background-color: transparent;
+    backdrop-filter: blur(30px);
+    border-radius: 8px;
+    padding: 2px;
+    box-sizing: border-box; /* Includes padding in the width calculation */
+    margin-top: 10px; /* Only vertical margin to avoid horizontal issues */
+    margin-bottom: 10px; /* Only vertical margin */
+    z-index: 10;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.title {
+    font-family: Lato, sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 1.57px;
+    color: rgb(212 212 212);
+}
+
+.icon {
+    width: 20px;
+    transition: .2s ease;
+}
+
+.icon:hover {
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: #6e7281;
+}
+
+.editor-content {
+    margin: 0 10px 10px;
+    color: white;
+}
+
+.property {
+    margin-left: 30px;
+}
+
+.property:hover {
+    cursor: text;
+}
+
+.editor-content .color-0 {
+    color: rgb(86 156 214);
+}
+
+.editor-content .color-1 {
+    color: rgb(182 206 168);
+}
+
+.editor-content .color-2 {
+    color: rgb(156 220 254);
+}
+
+.editor-content .color-3 {
+    color: rgb(207 146 120);
+}
+
+.color-preview-1,.color-preview-2 {
+    height: 8px;
+    width: 8px;
+    border: 1px solid #fff;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.color-preview-1 {
+    background-color: #1d1e22;
+}
+
+.color-preview-1 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.code-editor-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow the items to wrap onto the next line */
+    justify-content: flex-start; /* Align items to the start of the line */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Vertical and horizontal gaps between children */
+    padding: 10px; /* Padding inside the container */
+    margin: 20px auto; /* Top and bottom margin with auto horizontal margin */
+    /* Adjust width to fit exactly four editors */
+    max-width: calc(4 * 300px + 3 * 20px + 20px); /* 4 editors, 3 gaps, 10px padding on each side */
+    box-sizing: border-box; /* Includes padding in the width calculation */
+    z-index: 10;
+}
+
+#welcomeText {
+    font: bold 300% Consolas, Monaco, monospace;
+    margin: auto;  /* Center horizontally */
+    position: absolute;  /* Positioned absolutely within the body */
+    top: 50%;  /* Positioned halfway down the parent (body) */
+    left: 50%;  /* Positioned halfway across the parent (body) */
+    transform: translate(-50%, -50%) scale(0); /* Start transformed for animation */
+    text-align: center;  /* Ensure text is centered if it wraps */
+    white-space: nowrap;
+    overflow: visible;  /* Changed from 'hidden' to 'visible' to avoid clipping */
+    opacity: 0;  /* Start with hidden text for animation */
+    transition: opacity 2s, transform 2s;  /* Smooth fade and scale transition */
+    color: transparent;  /* Make the text color transparent to see the gradient */
+    background: linear-gradient(45deg, #888, #ccc, #888);  /* Smooth gray gradient */
+    background-clip: text;  /* Apply the gradient to the text itself */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  /* Necessary for Safari */
+    text-shadow:
+            0 0 10px #ccc,
+            0 0 20px #ccc,
+            0 0 30px #888, /* Enhanced soft ambient glow using grays */
+            0 0 40px #888;
+    animation: appear 2s forwards ease-out, disappear 2s 3s forwards ease-in;
+}
+
+@keyframes appear {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes disappear {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+.form, .code-editor {
+    transition: opacity 0.7s ease-in-out;
+}
+
+.form, .code-editor {
+    display: none; /* Start with them not displayed */
+    opacity: 0; /* Start with them fully transparent */
+}
+
+
+.code-editor {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    transform: scale(0.97); /* Start smaller to grow in size */
+    opacity: 0;  /* Start from invisible */
+}
+
+.code-editor:hover {
+    transform: scale(1.05); /* Enlarges the editor on hover */
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Brighter and larger shadow on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Slight background color change on hover */
+}
+
+

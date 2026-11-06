@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --block-size: 30px;
+}
+
+.main-container {
+
+    height: 100vh;
+    padding: 3.5vmin;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.tetris-container {
+    display: grid;
+    grid-template-columns: repeat(11, var(--block-size));
+    grid-template-rows: repeat(20, var(--block-size));
+    overflow: hidden; /* Prevents internal scroll during scaling */
+    position: relative;
+    align-self: center;
+    max-height: 80vh;
+}
+
+aside {
+    margin-left: var(--block-size);
+    align-self: center;
+}
+
+.next-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    border: 2px solid #666;
+    width: calc(6 * var(--block-size)); /* Set a specific width based on the block size */
+    height: calc(5 * var(--block-size)); /* Set a specific height based on the block size */
+    margin: 20px auto; /* Center the container horizontally with some margin from top/bottom */
+    padding: 10px; /* Add padding to prevent shapes from touching the edges */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    perspective: 1000px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+}
+
+
+/* Subtle pulsating glow animation */
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.75);
+    }
+}
+
+.next-container:hover {
+    animation: glow-pulse 2s infinite ease-in-out; /* Applies the pulsating glow on hover */
+}
+
+/* Adding interactive feedback on block hover */
+.next-container > div {
+    transition: transform 0.5s ease; /* Smooth transition for block transformations */
+    transform-origin: bottom center; /* Ensures the pull effect originates from the bottom center */
+}
+
+
+
+
+.text-container {
+    margin-top: var(--block-size);
+    font-family: 'Press Start 2P', monospace;
+    color: #FFF;
+    text-align: center;
+    font-size: 3vmin;
+    text-transform: uppercase; /* Change to uppercase for stylistic preference */
+    text-shadow: 1px 1px 2px #000, 0 0 25px #FFF, 0 0 5px #EEE; /* White glow for a neon effect */
+    width: 100%; /* Full width to accommodate slider and text */
+    padding: 10px; /* Padding for spacing */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+
+p span {
+    display: block;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button-container span {
+    margin: 0 1em;
+    cursor: pointer;
+}
+
+.button-container span:hover {
+    color: #00FB30
+}
+
+.container {
+    grid-row: 2/-2;
+    grid-column: 2/-1;
+    display: grid;
+    grid-template-columns: repeat(10,var(--block-size));
+    grid-template-rows: repeat(18,var(--block-size))
+}
+
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    font-size: 2rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block,
+.container div {
+    background-color: inherit;
+    border: 1px outset grey;
+    height: var(--block-size);
+    width: var(--block-size);
+}
+
+
+@keyframes drop {
+    30% {grid-row: 2}
+    65% {grid-row: 3}
+    100% {grid-row: 4}
+}
+
+@keyframes flash {
+    from {visibility: hidden}
+    to {visibility: visible}
+}
+.block {
+    background-color: #333; /* Dark gray for visibility against the game background */
+    border: 1px solid #555; /* Slightly lighter border for a subtle 3D effect */
+    height: var(--block-size);
+    width: var(--block-size);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for transform and shadow */
+    will-change: transform, box-shadow; /* Optimizes the properties that will be animated */
+    transform: translateZ(0); /* Ensures the block is ready for 3D transformations */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Subtle shadow for depth */
+}
+
+.block:hover {
+    transform: translateY(-10px) scale(1.1); /* Lifts the block up and scales it slightly larger */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.75); /* Increases the shadow to emphasize the lift */
+}
+
+
+
+.border .block:hover {
+    transform: translateY(0) scale(0.95); /* Subtle scaling down on hover */
+    box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.9), /* Less pronounced shadow during press */
+            0 -6px 12px rgba(255, 255, 255, 0.2), /* Diminished upper glow to simulate pressing down */
+            inset 0 -6px 6px rgba(0, 0, 0, 0.6), /* Increased inner shadow for pressed look */
+            inset 0 6px 6px rgba(255, 255, 255, 0.2); /* Subtle inner highlight */
+
+    /* Enhancing the glow effect on hover to be stronger */
+    &:before {
+        box-shadow: 0 0 50px 25px rgba(255, 255, 255, 0.7); /* Significantly increased glow on hover */
+    }
+}
+
+.border .block:hover:before {
+    box-shadow: 0 0 80px 50px rgba(255, 255, 255, 0.8); /* Intensified glow on hover for a striking visual cue */
+}
+
+/* Additional styling for neon-like ambient effect */
+
+
+/* Стилі для ігрових блоків */
+.container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.shape-container {
+    transition: transform 0.5s, opacity 0.5s;
+    transform-style: preserve-3d; /* Enables 3D transformations for children */
+    perspective: 800px; /* Sets perspective depth for 3D transformations */
+    overflow: hidden; /* Ensure no overflow of inner elements */
+}
+
+.game-block {
+    width: var(--block-size);
+    height: var(--block-size);
+    position: absolute;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75); /* Enhanced shadow for depth */
+    background-color: #CCC; /* Default background, overridden by color classes */
+    border: 1px solid #333;
+    transform-style: preserve-3d;
+    transition: transform 0.5s, box-shadow 0.5s;
+    transform: translateZ(0);
+    overflow: hidden; /* Ensure no overflow of inner elements */
+}
+
+.game-block::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 50%; /* Half the height of the element to simulate a reflective surface below */
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    transform: scaleY(-1); /* Flipping the gradient to simulate reflection */
+    opacity: 0.3; /* Making the reflection subtle */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Dynamic glow effect on hover using color-specific shadows */
+.game-block.red:hover { box-shadow: 0 0 15px rgba(255, 64, 54, 0.75); }
+.game-block.blue:hover { box-shadow: 0 0 15px rgba(0, 116, 217, 0.75); }
+.game-block.green:hover { box-shadow: 0 0 15px rgba(46, 204, 64, 0.75); }
+.game-block.yellow:hover { box-shadow: 0 0 15px rgba(255, 220, 0, 0.75); }
+.game-block.purple:hover { box-shadow: 0 0 15px rgba(177, 13, 201, 0.75); }
+
+.game-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); /* Light overlay to enhance reflection effect */
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.2); /* Subtle neon glow around the borders */
+    z-index: -1;
+    pointer-events: none;
+}
+
+.game-block.red { background-color: #FF4136; }
+.game-block.blue { background-color: #0074D9; }
+.game-block.green { background-color: #2ECC40; }
+.game-block.yellow { background-color: #FFDC00; }
+.game-block.purple { background-color: #B10DC9; }
+
+.game-block:hover {
+    transform: translateY(0) scale(0.95); /* Subtle scaling down on hover */
+    box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.9), /* Less pronounced shadow during press */
+            0 -6px 12px rgba(255, 255, 255, 0.2), /* Diminished upper glow to simulate pressing down */
+            inset 0 -6px 6px rgba(0, 0, 0, 0.6), /* Increased inner shadow for pressed look */
+            inset 0 6px 6px rgba(255, 255, 255, 0.2); /* Subtle inner highlight */
+
+    /* Enhancing the glow effect on hover to be stronger */
+    &:before {
+        box-shadow: 0 0 50px 25px rgba(255, 255, 255, 0.7); /* Significantly increased glow on hover */
+    }
+}
+.slider {
+    width: 80%;
+    margin: 10px;
+}
+
+.button-container a {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Ensures text color matches other span elements */
+}
+#welcomeText {
+    font: bold 300% Consolas, Monaco, monospace;
+    margin: auto;  /* Center horizontally */
+    position: absolute;  /* Positioned absolutely within the body */
+    top: 50%;  /* Positioned halfway down the parent (body) */
+    left: 50%;  /* Positioned halfway across the parent (body) */
+    transform: translate(-50%, -50%) scale(0); /* Start transformed for animation */
+    text-align: center;  /* Ensure text is centered if it wraps */
+    white-space: nowrap;
+    overflow: visible;  /* Changed from 'hidden' to 'visible' to avoid clipping */
+    opacity: 0;  /* Start with hidden text for animation */
+    transition: opacity 2s, transform 2s;  /* Smooth fade and scale transition */
+    color: transparent;  /* Make the text color transparent to see the gradient */
+    background: linear-gradient(45deg, #888, #ccc, #888);  /* Smooth gray gradient */
+    background-clip: text;  /* Apply the gradient to the text itself */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  /* Necessary for Safari */
+    text-shadow:
+            0 0 10px #ccc,
+            0 0 20px #ccc,
+            0 0 30px #888, /* Enhanced soft ambient glow using grays */
+            0 0 40px #888;
+    animation: appear 2s forwards ease-out, disappear 2s 3s forwards ease-in;
+}
+
+@keyframes appear {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes disappear {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+.button-container span, .main-container {
+     transition: opacity 2s ease;
+ }

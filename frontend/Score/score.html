@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating</title>
+    <link rel="stylesheet" href="../Background/css/Background3D.css">
+    <link rel="stylesheet" href="../Score/css/score.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../Slidebar/css/slide.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg height='200px' width='200px' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23000' d='M512,19.25c0-10.1-8.195-18.279-18.287-18.279H308.866v73.652c4.586-2.558,9.865-4.008,15.481-4.008 c17.623,0,31.919,14.287,31.919,31.923c0,17.619-14.288,31.914-31.919,31.914c-5.616,0-10.895-1.458-15.481-3.999v73.644h73.652 c-2.549,4.586-4.008,9.864-4.008,15.476c0,17.635,14.288,31.923,31.923,31.923c17.627,0,31.914-14.288,31.914-31.923 c0-5.612-1.458-10.89-3.999-15.476H512V19.25z'/></svg>">
+</head>
+<body>
+
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+
+<h1 id="welcomeText">There you go champion ♥</h1>
+
+<table class="container">
+    <thead>
+    <tr>
+        <th><h1>Players</h1></th>
+        <th onclick="fetchAndDisplayScores('gameCompleted')"><h1>Completed games</h1></th>
+        <th onclick="fetchAndDisplayScores('experience')"><h1>Score</h1></th>
+        <th onclick="fetchAndDisplayScores('playTime')"><h1>Time played</h1></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Vettel</td>
+        <td>13</td>
+        <td>154</td>
+        <td>15</td>
+    </tr>
+    </tbody>
+</table>
+
+<button class="btn">
+    <svg viewBox="0 0 17.503 15.625" height="20.625" width="20.503" xmlns="http://www.w3.org/2000/svg" class="icon">
+        <path transform="translate(0 0)" d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z" id="Fill"></path>
+    </svg>
+</button>
+
+<div class="nav-container">
+    <ul class="nav navigation">
+        <li>
+            <a href="../index.html">
+                <span class="icon-home"></span>
+                <span class="text">home</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Login/login.html">
+                <span class="icon-user"></span>
+                <span class="text">Login</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Registration/registration.html">
+                <span class="icon-user"></span>
+                <span class="text">Register</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Game/game.html">
+                <span class="icon-play"></span>
+                <span class="text">Block Puzzle</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Comments/comments.html">
+                <span class="icon-calendar"></span>
+                <span class="text">Comments</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Rating/rating.html">
+                <span class="icon-calendar"></span>
+                <span class="text">Rating</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="../Score/score.html">
+                <span class="icon-calendar"></span>
+                <span class="text">Score</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<canvas id="projector"></canvas>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script src="../Background/js/Background3D.js"></script>
+<script src="../Score/js/score.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.125.2/build/three.min.js"></script>
+<script src="../Slidebar/js/slide.js"></script>
+</body>
+</html>
+

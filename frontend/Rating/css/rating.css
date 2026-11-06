@@ -1,0 +1,240 @@
+
+form {
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    margin: 20px auto;
+    z-index: 10;
+}
+
+.lb {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.infos[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #333333;
+    color: white;
+}
+
+#send {
+    --glow-color: rgb(176, 255, 189);
+    --glow-spread-color: rgba(123, 255, 160, 0.781);
+    --enhanced-glow-color: rgb(182, 175, 71);
+    --btn-color: rgba(13, 241, 21, 0.508);
+    border: .25em solid var(--glow-color);
+    padding: 1em 2em;
+    color: var(--glow-color);
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 .05em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+}
+
+#send::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+#send:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 .75em .25em var(--glow-color);
+}
+
+#send:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 .5em .25em var(--glow-color);
+}
+
+#limpar {
+    --glow-color: rgb(255, 176, 176);
+    --glow-spread-color: rgba(255, 123, 123, 0.781);
+    --enhanced-glow-color: rgb(182, 175, 71);
+    --btn-color: rgba(241, 13, 13, 0.508);
+    border: .25em solid var(--glow-color);
+    padding: 1em 2em;
+    color: var(--glow-color);
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 .05em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+}
+
+#limpar::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+#limpar:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 .75em .25em var(--glow-color);
+}
+
+#limpar:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 .5em .25em var(--glow-color);
+}
+
+
+.rating-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: start;
+    justify-content: center;
+    height: 50vh;
+    width: 100%;
+    perspective: 1000px;
+    z-index: 10;
+}
+
+.rating {
+    flex: 0 1 33%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.stars {
+    display: flex;
+    transition: transform 1s;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.star {
+    width: 50px;
+    height: 50px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background-color: #ddd;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.star:hover, .star.selected {
+    transform: scale(1.2) rotate(360deg);
+    background-color: gold;
+    box-shadow: 0 0 20px gold;
+}
+
+.star::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    opacity: 0;
+    box-shadow: 0 0 15px 5px gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: opacity 0.3s;
+}
+
+.star:hover::before, .star.selected::before {
+    opacity: 1;
+}
+
+
+
+#welcomeText {
+    font: bold 300% Consolas, Monaco, monospace;
+    margin: auto;  /* Center horizontally */
+    position: absolute;  /* Positioned absolutely within the body */
+    top: 50%;  /* Positioned halfway down the parent (body) */
+    left: 50%;  /* Positioned halfway across the parent (body) */
+    transform: translate(-50%, -50%) scale(0); /* Start transformed for animation */
+    text-align: center;  /* Ensure text is centered if it wraps */
+    white-space: nowrap;
+    overflow: visible;  /* Changed from 'hidden' to 'visible' to avoid clipping */
+    opacity: 0;  /* Start with hidden text for animation */
+    transition: opacity 2s, transform 2s;  /* Smooth fade and scale transition */
+    color: transparent;  /* Make the text color transparent to see the gradient */
+    background: linear-gradient(45deg, #888, #ccc, #888);  /* Smooth gray gradient */
+    background-clip: text;  /* Apply the gradient to the text itself */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  /* Necessary for Safari */
+    text-shadow:
+            0 0 10px #ccc,
+            0 0 20px #ccc,
+            0 0 30px #888, /* Enhanced soft ambient glow using grays */
+            0 0 40px #888;
+    animation: appear 2s forwards ease-out, disappear 2s 3s forwards ease-in;
+}
+
+@keyframes appear {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes disappear {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+
+
+#welcomeText, .form, .rating {
+    transition: opacity 2s ease-in-out;
+}
+
+h3 {
+    color: gray;
+}
+.star.filled {
+    background: gold; /* Color for filled stars */
+}
+

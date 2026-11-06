@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-size: cover;
+            transition: background-image 1s ease-in-out;
+        }
+
+
+        .error-container {
+            display: none;
+            text-align: center;
+            padding: 60px;
+            width: 60%;
+            max-width: 1000px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 200px;
+            margin: 0;
+            color: #ff6b6b;
+        }
+        p {
+            font-size: 30px;
+            margin: 20px 0;
+        }
+        a {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        a:hover {
+            background-color: #ff4757;
+            transform: translateY(-5px);
+        }
+
+        .ring {
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:150px;
+            height:150px;
+            background:transparent;
+            border:3px solid #3c3c3c;
+            border-radius:50%;
+            text-align:center;
+            line-height:150px;
+            font-family:sans-serif;
+            font-size:20px;
+            color:#fff000;
+            letter-spacing:4px;
+            text-transform:uppercase;
+            text-shadow:0 0 10px #fff000;
+            box-shadow:0 0 20px rgba(0,0,0,.5);
+        }
+
+        .ring:before
+        {
+
+            content:'';
+            position:absolute;
+            top:-3px;
+            left:-3px;
+            width:100%;
+            height:100%;
+            border:3px solid transparent;
+            border-top:3px solid #fff000;
+            border-right:3px solid #fff000;
+            border-radius:50%;
+            animation:animateC 2s linear infinite;
+        }
+        span
+        {
+            display:block;
+            position:absolute;
+            top:calc(50% - 2px);
+            left:50%;
+            width:50%;
+            height:4px;
+            background:transparent;
+            transform-origin:left;
+            animation:animate 2s linear infinite;
+        }
+        span:before
+        {
+            content:'';
+            position:absolute;
+            width:16px;
+            height:16px;
+            border-radius:50%;
+            background:#fff000;
+            top:-6px;
+            right:-8px;
+            box-shadow:0 0 20px #fff000;
+        }
+        @keyframes animateC
+        {
+            0%
+            {
+                transform:rotate(0deg);
+            }
+            100%
+            {
+                transform:rotate(360deg);
+            }
+        }
+        @keyframes animate
+        {
+            0%
+            {
+                transform:rotate(45deg);
+            }
+            100%
+            {
+                transform:rotate(405deg);
+            }
+        }
+
+        @keyframes type{
+            from{box-shadow: inset -3px 0px 0px #888;}
+            to{box-shadow: inset -3px 0px 0px transparent;}
+        }
+
+        @keyframes blinkCursor {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="ring">
+    <span></span>
+</div>
+<div class="error-container animate__animated animate__fadeIn">
+    <h1></h1>
+    <p>Something went wrong. Please try again later or contact support if the problem persists.</p>
+    <a href="/" class="animate__animated animate__pulse animate__infinite">Return Home</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+<script>
+    const images = [
+        'https://source.unsplash.com/random/1920x1080?nature&sig=1',
+        'https://source.unsplash.com/random/1920x1080?landscape&sig=2',
+        'https://source.unsplash.com/random/1920x1080?city&sig=3'
+    ];
+    let currentImage = 0;
+    function typeAnimation() {
+        const text = "Sorry";
+        let i = 0; // Start from the beginning
+        const speed = 300; // Speed of "typing" and "deleting" animation
+        let isDeleting = false;
+        const symbols = ['!', '#', '$', '%', '^', '&', '*', '!', '?', '!']; // Array of symbols to spin through
+        let currentSymbolIndex = 0; // Index to keep track of the current symbol
+
+        function typeWriter() {
+            const header = document.querySelector('h1');
+
+            function spinSlot() {
+                if (currentSymbolIndex < symbols.length) {
+                    header.innerHTML = text.substring(0, i) + symbols[currentSymbolIndex] + '<-';
+                    currentSymbolIndex++;
+                    setTimeout(spinSlot, 100); // Adjust the speed of spinning here
+                } else {
+                    currentSymbolIndex = 0; // Reset for the next cycle
+                    setTimeout(typeWriter, speed); // Move to typing after spinning
+                }
+            }
+
+            if (isDeleting) {
+                if (i > 0) {
+                    header.innerHTML = text.substring(0, --i) + symbols[currentSymbolIndex] + '|';
+                    setTimeout(typeWriter, speed);
+                } else {
+                    isDeleting = false;
+                    spinSlot(); // Spin after deleting
+                }
+            } else {
+                if (i < text.length) {
+                    header.innerHTML = text.substring(0, ++i) + symbols[currentSymbolIndex] + '|';
+                    setTimeout(typeWriter, speed);
+                } else {
+                    isDeleting = true;
+                    setTimeout(typeWriter, 1000); // Delay before starting deletion
+                }
+            }
+        }
+
+        // Clear the text before starting the animation
+        document.querySelector('h1').innerHTML = '|';
+
+        typeWriter();
+    }
+
+
+
+    let isFirstLoad = true;
+
+    function changeBackgroundImage(images) {
+        const nextImage = images[currentImage++ % images.length];
+        const duration = isFirstLoad ? 2000 : 1000; // 2000 ms for the first load, 1000 ms for subsequent
+        const body = $(document.body);
+
+        // Preload the next image to avoid flickering
+        $('<img>').attr('src', nextImage).on('load', function() {
+            $(this).remove(); // Remove the img element once loaded
+
+            body.animate({
+                // Use a dummy property to animate over the duration
+                dummyProp: 1
+            }, {
+                duration: duration,
+                easing: 'swing', // or any other jQuery easing function
+                step: function(now, fx) {
+                    // Gradually change the background image during the animation
+                    $(this).css('background-image', `linear-gradient(to bottom, rgba(255, 255, 255, ${1 - now}), rgba(255, 255, 255, ${1 - now})), url('${nextImage}')`);
+                },
+                complete: function() {
+                    // Ensure the final state is correctly set
+                    $(this).css('background-image', `url('${nextImage}')`);
+
+                    if (isFirstLoad) {
+                        $('.ring').fadeOut('slow', function() {
+                            $('.error-container').fadeIn('slow');
+                            typeAnimation(); // Make sure this function is defined
+                        });
+                        isFirstLoad = false;
+                    }
+                }
+            });
+        });
+    }
+    $(document).ready(function() {
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth - 0.5;
+            const mouseY = e.clientY / window.innerHeight - 0.5;
+            gsap.to(".error-container", {duration: 0.5, x: mouseX * 20, y: mouseY * 20, ease: "power2.out"});
+        });
+    });
+    $(document).ready(function() {
+        changeBackgroundImage(images, function() {
+            $('.ring').fadeOut('slow', function() {
+                $('.error-container').fadeIn('slow');
+            });
+        });
+
+        $('.error-container').css({ transform: 'scale(0.5)', opacity: 0 }).animate({ transform: 'scale(1)', opacity: 1 }, 2000);
+    });
+</script>
+</body>
+</html>
+
+

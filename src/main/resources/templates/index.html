@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Puzzle - Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <style>
+        body {
+            color: #ffffff;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #6e48aa, #9d50bb);
+        }
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            z-index: 1;
+            position: relative;
+        }
+        .game-title {
+            font-size: 4rem;
+            color: #ffcc00;
+            animation: fadeInUp 2s ease-out;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease-in-out;
+            text-shadow: 3px 3px 0px #b29400; /* 3D effect */
+        }
+        .game-title:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+        .game-icon {
+            font-size: 10rem;
+            color: #ffcc00;
+            animation: rotateIn 2s ease-out;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        .game-icon:hover {
+            transform: rotate(20deg);
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translate3d(0, 40px, 0);
+                opacity: 0;
+            }
+            to {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-360deg);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="welcome-container">
+    <i class="fas fa-puzzle-piece game-icon"></i>
+    <h1 class="game-title">Block Puzzle</h1>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
+<script>
+    VANTA.NET({
+        el: "body",
+        color: 0xffcc00,
+        backgroundColor: 0x000000,
+        points: 12,
+        maxDistance: 25,
+        spacing: 20
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

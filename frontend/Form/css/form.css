@@ -1,0 +1,293 @@
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    z-index: 10;
+}
+
+
+.up {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+
+}
+
+.down {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.card1 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    border-radius: 90px 5px 5px 5px;
+    transition: 0.2s ease-in-out;
+    animation: scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.whatsapp {
+    margin-top: 1.5em;
+    margin-left: 1.2em;
+    fill: #00ff00;
+}
+
+.card2 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    border-radius: 5px 90px 5px 5px;
+    transition: 0.2s ease-in-out;
+    animation: scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.linkedin {
+    margin-top: 1.5em;
+    margin-left: -0.9em;
+    fill: #0077b5;
+}
+
+.card3 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    border-radius: 5px 5px 5px 90px;
+    transition: 0.2s ease-in-out;
+    animation: scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.github {
+    margin-top: -0.6em;
+    margin-left: 1.2em;
+}
+
+.card4 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    border-radius: 5px 5px 90px 5px;
+    transition: 0.2s ease-in-out;
+    animation: scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.discord {
+    margin-top: -0.9em;
+    margin-left: -1.2em;
+    fill: #8c9eff;
+}
+
+.card1:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #00ff00;
+}
+
+.card1:hover .whatsapp {
+    fill: white;
+}
+
+.card2:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #0077b5;
+}
+
+.card2:hover .linkedin {
+    fill: white;
+}
+
+.card3:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: black;
+}
+
+.card3:hover .github {
+    fill: white;
+}
+
+.card4:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #8c9eff;
+}
+
+.card4:hover .discord {
+    fill: white;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#welcomeText {
+    font: bold 300% Consolas, Monaco, monospace;
+    margin: auto;  /* Center horizontally */
+    position: absolute;  /* Positioned absolutely within the body */
+    top: 50%;  /* Positioned halfway down the parent (body) */
+    left: 50%;  /* Positioned halfway across the parent (body) */
+    transform: translate(-50%, -50%) scale(0); /* Start transformed for animation */
+    text-align: center;  /* Ensure text is centered if it wraps */
+    white-space: nowrap;
+    overflow: visible;  /* Changed from 'hidden' to 'visible' to avoid clipping */
+    opacity: 0;  /* Start with hidden text for animation */
+    transition: opacity 2s, transform 2s;  /* Smooth fade and scale transition */
+    color: transparent;  /* Make the text color transparent to see the gradient */
+    background: linear-gradient(45deg, #888, #ccc, #888);  /* Smooth gray gradient */
+    background-clip: text;  /* Apply the gradient to the text itself */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  /* Necessary for Safari */
+    text-shadow:
+            0 0 10px #ccc,
+            0 0 20px #ccc,
+            0 0 30px #888, /* Enhanced soft ambient glow using grays */
+            0 0 40px #888;
+    animation: appear 2s forwards ease-out, disappear 2s 3s forwards ease-in;
+}
+
+@keyframes appear {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes disappear {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+@keyframes fadeOutText {
+    0% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+.fadeIn {
+    opacity: 0;
+    animation: fadeInElement 1.5s ease-out forwards;
+    animation-delay: 4s; /* This should match the duration of the text fade out */
+}
+
+@keyframes fadeInElement {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn2, .socail-media li {
+    opacity: 0; /* Start elements as invisible */
+}
+
+.padded {
+    padding: 1em 2em;
+}
+button {
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    width: 170px;
+    height: 50px;
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s; /* Smoother press effect */
+    animation: fadeInUp 0.5s ease-out forwards; /* Apply the animation */
+    top: 20px; /* Start position for the animation */
+}
+
+button:active {
+    transform: scale(0.98); /* Slightly presses the button */
+    box-shadow: 0.1px 0.1px 2px rgba(255, 255, 255, 0.6); /* Subtle white glow */
+}
+
+button span {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white for a softer look */
+    transition: 0.5s;
+    box-shadow: 1px 1px 20px rgba(255, 255, 255, 0.9); /* Brighter white glow */
+}
+
+button span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 30%;
+}
+
+button:hover span:nth-child(1) {
+    height: 100%; /* Full height on hover */
+}
+
+button span:nth-child(2) {
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 3px;
+}
+
+button:hover span:nth-child(2) {
+    width: 100%; /* Full width on hover */
+}
+
+button span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    width: 3px;
+    height: 30%;
+}
+
+button:hover span:nth-child(3) {
+    height: 100%; /* Full height on hover */
+}
+
+button span:nth-child(4) {
+    bottom: 0;
+    right: 0;
+    width: 15%;
+    height: 3px;
+}
+
+button:hover span:nth-child(4) {
+    width: 100%; /* Full width on hover */
+}
+
+.button-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits text color from parent */
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
